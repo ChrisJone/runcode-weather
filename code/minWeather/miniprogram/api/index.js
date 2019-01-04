@@ -152,7 +152,9 @@ const sortCityList = (data) => {
 // 获取全国城市列表
 const getCityList = () => {
   // 从缓存取
-  let CITY_LIST = wx.getStorageSync('CITY_LIST')
+  let CITY_LIST = wx.getStorageSync('CITY_LIST');
+  wx.removeStorageSync("CITY_LIST");
+  CITY_LIST = null;
   if (CITY_LIST) {
     return Promise.resolve(CITY_LIST)
   }

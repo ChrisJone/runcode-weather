@@ -3,6 +3,7 @@ const app = getApp()
 const config = app.globalData.config
 const api = app.globalData.api
 const util = app.globalData.util
+const areacache = app.globalData.areacache
 const loading = app.globalData.loading
 const regeneratorRuntime = require('../../lib/regenerator')
 const indexBar = config.indexBar
@@ -176,6 +177,8 @@ Page({
 
   // 跳转到首页
   navigateToIndex () {
+    //将选择的城市放到缓存
+    
     wx.navigateBack({
       url: '/pages/index/index'
     })
@@ -200,14 +203,15 @@ Page({
 
   // 点击城市项
   tapCityItem (event) {
-    let { fullname, location } = event.currentTarget.dataset.item
+    let { fullname, location, initial } = event.currentTarget.dataset.item
 
     wx.setStorageSync(
       'POSITION',
       JSON.stringify({
         title: fullname,
         longitude: location.lat,
-        latitude: location.lng
+        latitude: location.lng,
+        initial: initial
       })
     )
     this.navigateToIndex()
