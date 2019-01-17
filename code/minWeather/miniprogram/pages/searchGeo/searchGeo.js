@@ -22,7 +22,8 @@ Page({
     suggList: [], // 搜索提示列表
     isShowSugg: false, // 是否显示搜索遮罩
     searchCls: 'no-sugg', // 没有提示的样式
-    title: null
+    title: null,
+    selectedCity: []
   },
 
   // 加载提示
@@ -39,14 +40,23 @@ Page({
   async init () {
     await this.showLoading()
     await this.getCityList()
+    await this.getSelectedCity();
     await this.filterGuess()
     await this.hideLoading()
   },
 
+  //获取我选择的城市
+  getSelectedCity(){
+    let selectedCity = areacache.getCacheAreaData();
+    this.setData({
+      selectedCity: selectedCity
+    })
+  },
   // 获取城市列表
   getCityList () {
     return new Promise((resolve, reject) => {
       api.getCityList().then((res) => {
+        console.log(res);
         this.setData({
           cityList: res
         })

@@ -1,8 +1,0 @@
-<!--pages/selectCity/index.wxml-->
-<view class='selected-area'>
-  <scroll-view scroll-y="{{true}}" class="area-list" scroll-with-animation="{{true}}" bindscroll="scroll">
-    <block wx:for="{{selectAreaList}}" wx:key="{{index}}">
-      <view class='city-list' bindtap='cityTap'data-item="{{item}}">{{item.fullname}}</view>
-    </block>
-  </scroll-view>
-</view>
