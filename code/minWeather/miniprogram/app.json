@@ -11,5 +11,10 @@
     "navigationBarTitleText": "RunCode Weather",
     "navigationBarTextStyle": "black"
   },
-  "cloud": true
+  "cloud": true,
+  "permission": {
+    "scope.userLocation": {
+      "desc": "RunCode天气获取您当前的位置信息"
+    }
+  }
 }

@@ -129,6 +129,7 @@ const getLifestyle = (option) => {
 
 // 此时根据拼音字母排序
 const sortCityList = (data) => {
+  console.log(data);
   if (!Array.isArray(data)) {
     return []
   }

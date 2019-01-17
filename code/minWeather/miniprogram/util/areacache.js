@@ -1,4 +1,5 @@
 const CACHE_AREA_KEY = "CACHE_AREA_KEY";
+
 const getCacheAreaData = () => {
   let _cache_data = wx.getStorageSync(CACHE_AREA_KEY);
   if (!Array.isArray(_cache_data)) {
@@ -14,14 +15,19 @@ const putCacheAreaData = (_area) => {
   }
   _cache_data.push(_area);
   //排序
-  sortCacheArea(_cache_data);
+  let cache_data = sortCacheArea(_cache_data);
+  wx.setStorageSync(CACHE_AREA_KEY, cache_data);
+  console.log("cache data is "+wx.getStorageInfoSync(CACHE_AREA_KEY))
 }
 
-sortCacheArea = (_cache_data) =>{
-
+const sortCacheArea = (_cache_data) =>{
+  _cache_data.sort((a, b) => {
+    return (a.initial > b.initial) ? 1 : -1
+  })
+  return _cache_data
 }
 
-module.exports={
+module.exports = {
   getCacheAreaData,
   putCacheAreaData
 }

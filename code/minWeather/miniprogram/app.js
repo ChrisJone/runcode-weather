@@ -3,7 +3,7 @@ const config = require('./util/config')
 const util = require('./util/util')
 const loading = require('./util/loading')
 const api = require('./api/index')
-const areacache = require('./util/areacache.js')
+const areacache = require('./util/areacache')
 
 App({
   onLaunch: function () {
@@ -21,6 +21,7 @@ App({
     config,
     api,
     util,
-    loading
+    loading,
+    areacache
   }
 })

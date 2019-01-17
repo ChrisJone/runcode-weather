@@ -162,14 +162,15 @@ Page({
 
   // 点击提示单元项，缓存选择的经纬度
   tapSuggItem (event) {
-    let { title, location } = event.currentTarget.dataset.item
+    let { title, location, initial } = event.currentTarget.dataset.item
 
     wx.setStorageSync(
       'POSITION',
       JSON.stringify({
         title: title,
         longitude: location.lat,
-        latitude: location.lng
+        latitude: location.lng,
+        initial: initial
       })
     )
     this.navigateToIndex()
@@ -178,7 +179,9 @@ Page({
   // 跳转到首页
   navigateToIndex () {
     //将选择的城市放到缓存
-    
+    let currentSelect = wx.getStorageSync('POSITION')
+    console.log(currentSelect);
+    areacache.putCacheAreaData(currentSelect);
     wx.navigateBack({
       url: '/pages/index/index'
     })

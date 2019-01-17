@@ -6,6 +6,7 @@ const util = app.globalData.util
 const loading = app.globalData.loading
 const regeneratorRuntime = require('../../lib/regenerator')
 const indexBar = config.indexBar
+const areacache = app.globalData.areacache
 
 Page({
 
@@ -36,8 +37,8 @@ Page({
    * 加载已选择的城市列表
    */
   async getCacheAreaList() {
-    let _cacheAreaList = wx.getStorageSync("CACHE_AREA_DATA");
-
+    let _cacheAreaList = wx.getStorageSync(areacache.CACHE_AREA_KEY);
+    console.log('current select city list is :'+_cacheAreaList);
   },
 
   /**
